@@ -130,3 +130,11 @@ created under ``~/Maildir`` with the first incoming mail. But as this is no ordi
 .. warning::
   In the past we also promoted mailaddresses in the form ``USERNAME@SERVER.uberspace.de``. This may not be
   available in future product versions and should no longer be used.
+
+To migrate an existing system mailbox you may set up a regular mailbox, move all mail files from ``~/Maildir/*`` to ``~/users/$MAILBOX/``, recreate the dovecot index files and restore the default behaviour to forward mails.
+
+.. code-block:: bash
+
+  [isabell@stardust ~]$ MAILBOX=isa # replace isa with the name of the newly created mailbox
+  [isabell@stardust ~]$ mv ~/Maildir/* ~/Maildir/.* ~/users/$MAILBOX/
+  [isabell@stardust ~]$ find ~/users/$MAILBOX/ -name "dovecot*" -delete
